@@ -208,3 +208,113 @@ console.log(arrayNumber.sort((a, b) => a - b)); // Classe du plus petit au plus 
 console.log(arrayNumber.filter((number) => number > 10).sort((a, b) => a - b)); // cherche les chiffres supreieur a 10 et les classe du plus petit au plus grand
 
 //MAP
+
+// document.body.innerHTML = arrayNumber // permet d'appeler un tableau sous forme de LI sur le body
+//   .map((number) => ` <li> ${number}</li>`)
+//   .join("");
+
+// Méthodes objects
+
+document.body.innerHTML = data
+  .filter((user) => user.admin === false) // demande d'afficher que les personnes non admin
+  .filter((user) => user.pseudo.includes("Den")) // filtre uniquement le texte commencant par Den
+  .sort((a, b) => b.age - a.age) // permet de trier par age
+  .map(
+    //affiche ce que l'on demande
+    (user) =>
+      `
+<div class="user-card"> 
+ <h2>${user.pseudo}</h2>
+ <p>Age : ${user.age}</p>
+ <p>Status : ${user.admin ? "Modérateur" : "Membre"} <p>  
+</div>
+
+`
+    //fonction ternaire  <p>Status : ${user.admin ? "Modérateur" : "Membre"} <p> test si les personnes sont admin, si oui mettre modérateur si non mettre membre
+  )
+  .join(""); //permet d'enlever les , mis par default par le MAP
+
+//----------------
+//Dates
+//----------------
+
+// dates classiques
+let date = new Date();
+console.log(date);
+
+// Timestamp
+let timstamps = Date.parse(date);
+console.log(timstamps);
+
+//IsoString
+let iso = date.toISOString();
+console.log(date.toISOString()); // date années mois jours heures
+
+function dateParser(chaine) {
+  let newDate = new Date(chaine).toLocaleDateString("fr-FR", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    hour: "numeric",
+    minute: "numeric",
+  });
+  return newDate;
+}
+
+console.log(dateParser(date));
+
+//-------------
+// Destructuring
+//-------------
+
+let moreData = {
+  destVar: ["Element 1", "Element 2"],
+};
+
+const { desVar } = moreData;
+
+let array8 = [70, 80, 90];
+let [x, y, z] = array8;
+//console.log(x, y, z);
+
+const dateDestructuring = (chaine) => {
+  let newDate = chaine.split("T")[0]; // permet de garder uniquement les caracteres avant le T
+  let [y, m, d] = newDate.split("-");
+  return [d, m, y].join("/");
+};
+
+console.log(dateDestructuring(iso));
+
+//---------------
+// Les Datasets
+//---------------
+
+const h3js = document.getElementById("JS");
+console.log(h3js);
+
+// Les Regex
+
+let mail = "from-strach33@gmail.com";
+console.log(mail.search(/fromfgg/)); // permet de savoir si from existe  "0" il existe "-1" il existe pas
+
+console.log(mail.replace(/from/, "de")); //permet d'aller chercher from et le remplacer par "de"
+
+console.log(mail.match(/Strach/i)); // le i permet d'enlever lma case sensitive
+console.log(mail.match(/[zug]/)); // demande si une des lettre figure dans le mail
+console.log(mail.match(/[123]/)); // demande si un des chiffres figure dans le mail
+console.log(mail.match(/\d/)); // demande une recherche sur tous les chiffres
+console.log(mail.match(/[a-z]/)); // demande une recherche sur tous les lettres
+
+// controller un Mail
+
+console.log(mail.match(/^[\w_-]+@[\w-]+\.[a-z]{2,4}$/));
+// permet de controller un mail chiffres et lettre @ et point ainsi que le nom de domaine avec 4 caractere maximun
+// \w recherche tous les caracteres chiffres et lettre
+// $ permet de signaler la fin de la regex
+//^ debut de la regex
+
+let separator = 28021989021989;
+console.log(separator.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " "));
+console.log(separator.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+// permet de mettre un espace tout les 3 chiffres ou n'importe quelle elements selectionner
+//toString passe les chiffres en chaine de caractere
