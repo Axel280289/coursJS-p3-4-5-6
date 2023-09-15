@@ -37,30 +37,6 @@ const pseudoChecker = (value) => {
   }
 };
 
-//------------------------------
-//facon de faire  en le faisant pour chaque element Pseudo/email/mdp/etc...
-//------------------------------
-// const pseudoChecker = (value) => {
-//   const pseudoContainer = document.querySelector(" .pseudo-container");
-//   const errorDisplay = document.querySelector(" .pseudo-container > span"); // permet d'aller chercher la span dans la classe pseudo-container
-
-//   if (value.length > 0 && (value.length < 3 || value.length > 20)) {
-//     pseudoContainer.classList.add("error"); // ajoute la classe error si le pseudo fais moins de 3 ou plus de 20 caracteres
-//     errorDisplay.textContent = " le pseudo dois faire entre 3 et 20 caracteres";
-//   } else if (!value.match(/^[a-zA-Z0-9_.-]*$/)) {
-//     // permet de controller qu'il ny ai pas de caracteres speciaux dans le pseudo
-//     // ! veut dire l'inverse de
-//     // la regex test si ya des lettre en minuscule/majuscule/ _.- si autre chose que cela ( un message d'erreur apparait)
-//     pseudoContainer.classList.add("error"); // ajoute la classe error si des caracteres speciaux sont trouvé
-//     errorDisplay.textContent =
-//       "le pseudo ne dois pas contenir de caracteres speciaux";
-//   } else {
-//     pseudoContainer.classList.remove("error");
-//     errorDisplay.textContent = "";
-//   }
-// };
-//-------------------------
-
 const emailChecker = (value) => {
   if (!value.match(/^[\w_-]+@[\w-]+\.[a-z]{2,4}$/)) {
     //regex pour tester le mail
